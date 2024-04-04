@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+    @@include('html/head.html', {
+        "title": "Верификация аккаунта"
+    })
+    <main class="login">
+        <div class="container">
+            <form method="post" class="login__form card">
+                <div class="email-verification__logo _icon-logotype"></div>
+                <div class="email-verification__title"> Верификация </div>
+                <div class="email-verification__conclusion"> {{ message }} </div>
+                <a href="/login" type="button" class="form__redirect-trigger">Обратно к логину</a>
+            </form>
+        </div>
+    </main>
+    @@include('html/footer.html', {})
+</html>

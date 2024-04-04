@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+    @@include('html/head.html', {
+        "title": "Главная"
+    })
+    <body>
+        @@include('html/header.html', {})
+     
+        <main>  
+            <div class="container">
+                <div class="overlay"></div>
+                <div class="modal-change-photo card" style="display: none;" id="attachCommentPhotos" data-upload-id="">
+                    <div class="modal-change-photo__title border-bottom">
+                        <span class="modal-change-photo__text">Загрузка новых фотографий</span>
+                        <span class="modal-change-photo__close _icon-close" role="button" onclick="closeModal('attachCommentPhotos')"></span>
+                    </div>
+                    <div class="modal-change-photo__block">
+                        <div class="modal-change-photo__recomendation">Вы можете загрузить изображения <br>в формате JPG, JPEG или PNG.</div> 
+                        <div class="modal-change-photo__photos">
+                            <ul class="media-grid items-" id="media-grid-upload">
+      
+                            </ul>
+                        </div>
+                        <div class="modal-change-photo__button-group">
+                          <label for="change-photos-input" class="modal-change-photo__label">Загрузить</label>
+                          <input type="file" id="change-photos-input" class="modal-change-photo__input" 
+                          accept="image/jpeg, image/jpg, image/png, image/" hidden multiple onchange="uploadPhotos(this, 'media-grid-upload')">
+                          <button class="modal-change-photo__submit" id="modal-change-photos" 
+                          onclick="populateFromUpload('media-grid-upload', '', 'attachCommentPhotos'); closeModal('attachCommentPhotos')">Сохранить</button>
+                        </div>
+                    </div>
+                  </div>
+                <div class="page">
+                    @@include('html/navigation.html', {})
+                   
+                    <section class="page-body">
+                        {% for post in posts %}
+                        <div class="page-body__news card">
+                           
+                              <div class="news__header">
+                                <div><img class="news__image" src="{{ profile_avatars_dir }}/{{ post.owner.img }}" alt=""></div>
+                                <div class="news__header_text">
+                                    <!-- TODO-->
+                                    <div class="news__author"><a href="{{ profile_path }}/{{ post.owner.id }}" class="news__author link"> {{post.owner.fullname}}</a></div>
+                                    <div class="date__subtitle"><time class="date__date" time="{{post.created_date}}"></time></div>
+                                </div>
+                              </div>
+                              <div class="news-body">
+                                  <div class="news-body__text"> {{ post.content }} </div>
+                                  <ul class="news-body__ media-grid items-{{post.images|length}}">
+                                      {% for image in post.images %}
+                                        <li class="media-grid item">
+                                            <img src="{{ post_images_dir }}/{{ image.url }}" alt="" class="media-grid__img">
+                                        </li>
+                                      {% endfor %}
+                                  </ul>
+                              </div>
+                              <div class="news-footer">
+                                  {% if post in user.liked_posts %}
+                                  <div role="button" class="news-footer__like btn-active" onclick="toggleLike(this, '{{ post.id }}')"><div class="f _icon-like like-active"><span class="count">{{ post.like_count }}</span></div></div>
+                                  {% else %}
+                                  <div role="button" class="news-footer__like btn" onclick="toggleLike(this, '{{ post.id }}')"><div class="f _icon-like"><span class="count">{{ post.like_count }}</span></div></div>
+                                  {% endif %}
+                                  <div class="news-footer__comment btn" onclick="displayComments('comments-{{ post.id }}')"><div class="f _icon-notify-comment"><span class="count" style="user-select: none;">{{post.comments|length}}</span></div></div>
+                              </div>
+                              <div class="news-comments" id='comments-{{ post.id }}'>
+                                <ul class="news-comments__list" id="comments-list-{{ post.id }}">
+                                  {% for comment in post.comments %}
+                                    <li class="news-comments__item" id="comment-{{comment.id}}">
+                                        <div class="news-comments__content">
+                                            <img src="{{profile_avatars_dir}}/{{comment.user.img}}" alt="" class="news-comments__photo">
+                                            <div class="news-comments__text-content">
+                                                <a href="{{ profile_path }}/{{ comment.user.id}}" class="news-comments__sender">{{ comment.user.fullname }}</a>
+                                                <div class="news-comments__text">{{comment.content}}</div>
+                                                <div class="date__subtitle"><time class="date__date" time="{{comment.created_date}}"></time></div>            
+                                            </div>
+                                        </div>
+                                        <ul class="messages-take media-grid items-{{comment.images|length}}">
+                                          {% for image in comment.images %}
+                                            <li class="media-grid item">
+                                                <img src="{{ post_comment_images_dir }}/{{ image.url }}" alt="" class="media-grid__img">
+                                            </li>
+                                          {% endfor %}
+                                        </ul>
+                                    </li>
+                                  {% endfor %}
+                                </ul>
+                                <div class="news-comments__form">
+                                  <img src="{{profile_avatars_dir}}/{{user.img}}" alt="" class="news-comments__your-photo">
+                                  <div class="news-comments__activity">
+                                      <div class="news-comments__add-photo _icon-paperclip" role="button" onclick="openModal('attachCommentPhotos', resultId='media-grid-upload-result-{{post.id}}')"></div>
+                                      <div class="news-comments__text-field" contentEditable="true" role="textbox" aria-multiline="true" data-text="Напишите сообщение..." 
+                                      onkeydown="autoResize(event, 'new-comment-message-{{post.id}}', '{{ post.id }}')" id="new-comment-message-{{post.id}}"></div>
+                                      <div class="news-comments__send-message _icon-react" onclick="sendMessageButton('new-comment-message-{{post.id}}', '{{ post.id }}')"></div>
+                                  </div> 
+                                </div>
+                                <ul class="media-grid items- messages-send" id="media-grid-upload-result-{{post.id}}">
+                                </ul>
+                              </div>
+                        </div>
+                        {% endfor %}
+                    </section>
+                </div>
+            </div>
+        </main>
+        @@include('html/footer.html', {})
+    </body>
+</html>

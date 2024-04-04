@@ -1,0 +1,33 @@
+<header class="header">
+  <div class="container">
+    <nav class="header__nav">
+      <ul class="nav__activity">
+        <li class="nav__brand">
+          <a href="" class="nav__logo _icon-logotype">HueHub</a>
+        </li>
+        <li class="nav__search _icon-search">
+          <input type="text" class="nav__search" placeholder="Поиск" id="search-all" value="" oninput="targetSearch()">
+          <div class="nav__search-results" style="display: none;">
+            <div class="search-results__title"><strong>Результаты поиска</strong></div>
+            <ul class="search-results__list" id="search-results-id">
+              <!-- Прелоадер -->
+              <div class="loader">
+                <div class="inner one"></div>
+                <div class="inner two"></div>
+                <div class="inner three"></div>
+              </div>
+              <!-- здесь добавляются результаты поиска-->
+            </ul>
+          </div>
+        </li>
+        <li class="nav__notification">
+          <button class="nav__notify _icon-notification"></button>
+        </li>
+     
+      </ul>
+      <div class="nav__profile">
+        <a href="#!" class="nav__profile"><img src="{{profile_avatars_dir}}/{{ user.img }}" alt="" class="nav__photo"></a>
+      </div>
+    </nav>
+  </div>
+</header>

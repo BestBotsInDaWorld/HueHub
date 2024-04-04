@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+    @@include('html/head.html', {
+        "title": "Сообщения"
+    })
+    <body>
+        @@include('html/header.html', {})
+        <main>
+            <div class="container">
+                <section class="dialogs">
+                    @@include('html/navigation.html', {})
+                    <div class="dialog card">
+                        <div class="dialogs__search border-bottom">
+                            <div class="search__block _icon-search">
+                                <input class="search__field" id="friends-search-field" placeholder="Поиск друзей"></input>
+                            </div>
+                        </div>
+                        <div class="friends-header"> Полученные заявки в друзья </div>
+                        <ul class="dialogs__list" id="received-requests-list-id">
+                          {% for pending_friend in received_requests %}
+                          <li class="dialog__item" >
+                            <div class="dialog__block">
+                              <div class="dialog__photo">
+                                <img src="{{profile_avatars_dir}}/{{ pending_friend.img }}" alt="">
+                              </div>
+                              <div class="dialog__content">
+                                <div class="dialog__title">
+                                    <a class="dialog__title text vertical-centered" href="{{profile_path}}/{{pending_friend.id}}">{{ pending_friend.fullname }}</a>
+                                    <div>
+                                      <span class="search-results__button _icon-check" role="button"
+                                      onclick="handleFriendChange('{{user.id}}', '{{ pending_friend.id }}', 'accept', 'received-requests-list-id', 'friends-list-id', 'received')"></span>
+                                      <span class="search-results__button _icon-close" role="button"
+                                      onclick="handleFriendChange('{{ pending_friend.id }}', '{{user.id}}', 'deny', 'received-requests-list-id', 'friends-list-id', 'received')"></span>
+                                    </div>
+                                </div>
+                              </div>
+                            </div>
+                          </li>
+                          {% endfor %}
+                        </ul>
+                        <div class="friends-header"> Отправленные заявки в друзья </div>
+                        <ul class="dialogs__list" id="sent-requests-list-id">
+                          {% for pending_friend in sent_requests %}
+                          <li class="dialog__item" >
+                            <div class="dialog__block">
+                              <div class="dialog__photo">
+                                <img src="{{profile_avatars_dir}}/{{ pending_friend.img }}" alt="">
+                              </div>
+                              <div class="dialog__content">
+                                <div class="dialog__title">
+                                    <a class="dialog__title text vertical-centered" href="{{profile_path}}/{{pending_friend.id}}">{{ pending_friend.fullname }}</a>
+                                    <span class="search-results__button _icon-close" role="button"
+                                    onclick="handleFriendChange('{{ user.id}}', '{{pending_friend.id}}', 'deny', 'sent-requests-list-id', 'friends-list-id', 'sent')"></span>
+                                </div>
+                              </div>
+                            </div>
+                          </li>
+                          {% endfor %}
+                        </ul>
+                        <div class="friends-header"> Друзья </div>
+                        <ul class="dialogs__list" id="friends-list-id">
+                          {% for friend in friends %}
+                          <li class="dialog__item">
+                            <div class="dialog__block">
+                              <div class="dialog__photo">
+                                <img src="{{profile_avatars_dir}}/{{ friend.img }}" alt="">
+                              </div>
+                              <div class="dialog__content">
+                                <div class="dialog__title">
+                                    <a class="dialog__title text vertical-centered" href="{{profile_path}}/{{friend.id}}">{{ friend.fullname }}</a>
+                                    <div>
+                                      <span class="search-results__button _icon-messages" role="button" onclick="toDialog('{{ friend.id }}')"></span>
+                                      <span class="search-results__button _icon-trash" role="button"
+                                      onclick="handleFriendChange('{{user.id}}', '{{ friend.id }}', 'delete', 'friends-list-id', 'friends-list-id', 'friends')"></span>
+                                    </div>
+                                </div>
+                              </div>
+                            </div>
+                          </li>
+                          {% endfor %}
+                        </ul>
+                    </div>
+                </section>
+            </div>
+        </main>
+        @@include('html/footer.html', {})
+    </body>
+</html>

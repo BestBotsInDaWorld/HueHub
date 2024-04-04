@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+    @@include('html/head.html', {
+        "title": "Группа"
+    })
+    <body style="overflow-y: hidden;">
+        @@include('html/header.html', {})
+        <main>
+            <div class="container">
+                <div class="overlay"></div>
+                <div class="modal-change-photo card" style="display: none;" id="attachChatPhotos">
+                  <div class="modal-change-photo__title border-bottom">
+                      <span class="modal-change-photo__text">Загрузка новых фотографий</span>
+                      <span class="modal-change-photo__close _icon-close" role="button" onclick="closeModal('attachChatPhotos')"></span>
+                  </div>
+                  <div class="modal-change-photo__block">
+                      <div class="modal-change-photo__recomendation">Вы можете загрузить изображения <br>в формате JPG, JPEG или PNG.</div> 
+                      <div class="modal-change-photo__photos">
+                          <ul class="media-grid items-" id="media-grid-upload">
+    
+                          </ul>
+                      </div>
+                      <div class="modal-change-photo__button-group">
+                        <label for="change-photos-input" class="modal-change-photo__label">Загрузить</label>
+                        <input type="file" id="change-photos-input" class="modal-change-photo__input" 
+                        accept="image/jpeg, image/jpg, image/png, image/" hidden multiple onchange="uploadPhotos(this, 'media-grid-upload')">
+                        <button class="modal-change-photo__submit" id="modal-change-photos" 
+                        onclick="populateFromUpload('media-grid-upload', 'media-grid-upload-result'); closeModal('attachChatPhotos')">Сохранить</button>
+                      </div>
+                  </div>
+                </div>
+                <section class="dialog-with">
+                    @@include('html/navigation.html', {})
+                    
+                    <div class="dialog-with__body card">
+                        <div class="dialog-with__header">
+                            <div class="dialog-with__title">{{ chat.title }}</div>
+                        </div>
+                        <div class="dialog-with__main">
+                            <ul class="dialog-with__list" id="chat-messages-id">
+                                {% for message in chat_messages %}
+                                <li class="dialog-with__item" id="chat-{{message.id}}">
+                                    <div class="item-content">  
+                                        <img class="dialog-with__photo" src="{{ profile_avatars_dir}}/{{ message.user.img }}" alt="">
+                                        <div class="dialog-with__message-info">
+                                            <div class="dialog-with__sender">
+                                                <a href="{{ profile_path }}/{{ message.user.id}}" class="dialog-with__from-whom">{{ message.user.fullname }}</a>
+                                                <div class="date__subtitle"><time class="date__date" time="{{message.created_date}}"></time></div>
+                                            </div>
+                                            <div class="dialog-with__text">{{ message.content }}</div>
+                                        </div>
+
+                                    </div>
+                                    <ul class="messages-take media-grid items-{{message.images|length}}">
+                                      {% for image in message.images %}
+                                        <li class="media-grid item">
+                                            <img src="{{ chat_images_dir }}/{{ image.url }}" alt="" class="media-grid__img">
+                                        </li>
+                                      {% endfor %}
+                                    </ul>
+                                </li>
+                                {% endfor %}
+                            </ul> 
+                        </div>
+                        <div class="dialog-with__footer">
+                            <div class="dialog-with__activity">
+                                <div class="dialog-with__add-photo _icon-paperclip" role="button" onclick="openModal('attachChatPhotos')"></div>
+                                <div class="dialog-with__text-field" contentEditable="true" role="textbox" aria-multiline="true" data-text="Напишите сообщение..." 
+                                onkeydown="autoResize(event, 'new-chat-message', chat_id='{{ chat.id }}')" id="new-chat-message"></div>
+                                
+                            </div> 
+                        </div>
+                        <ul class="media-grid items- messages-send" id="media-grid-upload-result">
+                      
+                        </ul>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </body>
+
+    @@include('html/footer.html', {})
+</html>

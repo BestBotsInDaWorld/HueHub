@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% set static_dir = '/static' %}
+    {% set profile_avatars_dir = '/static/img/profile_avatars' %}
+    {% set group_avatars_dir = '/static/img/group_avatars' %}
+    {% set post_images_dir = '/static/img/post_images' %}
+    {% set post_comment_images_dir = '/static/img/post_comment_images' %}
+    {% set dialog_images_dir = '/static/img/dialog_images' %}
+    {% set chat_images_dir = '/static/img/chat_images' %}
+    {% set profile_path = '/profile' %}
+    {% set chat_path = '/chat' %}
+    {% set friends_path = '/friends' %}
+    {% set chats_path = '/chats' %}
+    {% set news_path = '/' %}
+    <script>
+        var profileAvatarsDir = "{{ profile_avatars_dir }}";
+        var groupAvatarsDir = "{{ group_avatars_dir }}";
+        var profilePath = "{{ profile_path }}";
+        var chatPath = "{{ chat_path }}";
+        var dialogImagesDir = "{{ dialog_images_dir }}";
+        var chatImagesDir = "{{ chat_images_dir }}";
+        var postCommentImagesDir = "{{ post_comment_images_dir }}";
+    </script>
+    <link rel="stylesheet" href="{{ static_dir }}/css/style.min.css">
+    <title>Группа</title>
+</head>
+    <body style="overflow-y: hidden;">
+        <header class="header">
+  <div class="container">
+    <nav class="header__nav">
+      <ul class="nav__activity">
+        <li class="nav__brand">
+          <a href="" class="nav__logo _icon-logotype">HueHub</a>
+        </li>
+        <li class="nav__search _icon-search">
+          <input type="text" class="nav__search" placeholder="Поиск" id="search-all" value="" oninput="targetSearch()">
+          <div class="nav__search-results" style="display: none;">
+            <div class="search-results__title"><strong>Результаты поиска</strong></div>
+            <ul class="search-results__list" id="search-results-id">
+              <!-- Прелоадер -->
+              <div class="loader">
+                <div class="inner one"></div>
+                <div class="inner two"></div>
+                <div class="inner three"></div>
+              </div>
+              <!-- здесь добавляются результаты поиска-->
+            </ul>
+          </div>
+        </li>
+        <li class="nav__notification">
+          <button class="nav__notify _icon-notification"></button>
+        </li>
+     
+      </ul>
+      <div class="nav__profile">
+        <a href="#!" class="nav__profile"><img src="{{profile_avatars_dir}}/{{ user.img }}" alt="" class="nav__photo"></a>
+      </div>
+    </nav>
+  </div>
+</header>
+        <main>
+            <div class="container">
+                <div class="overlay"></div>
+                <div class="modal-change-photo card" style="display: none;" id="attachChatPhotos">
+                  <div class="modal-change-photo__title border-bottom">
+                      <span class="modal-change-photo__text">Загрузка новых фотографий</span>
+                      <span class="modal-change-photo__close _icon-close" role="button" onclick="closeModal('attachChatPhotos')"></span>
+                  </div>
+                  <div class="modal-change-photo__block">
+                      <div class="modal-change-photo__recomendation">Вы можете загрузить изображения <br>в формате JPG, JPEG или PNG.</div> 
+                      <div class="modal-change-photo__photos">
+                          <ul class="media-grid items-" id="media-grid-upload">
+    
+                          </ul>
+                      </div>
+                      <div class="modal-change-photo__button-group">
+                        <label for="change-photos-input" class="modal-change-photo__label">Загрузить</label>
+                        <input type="file" id="change-photos-input" class="modal-change-photo__input" 
+                        accept="image/jpeg, image/jpg, image/png, image/" hidden multiple onchange="uploadPhotos(this, 'media-grid-upload')">
+                        <button class="modal-change-photo__submit" id="modal-change-photos" 
+                        onclick="populateFromUpload('media-grid-upload', 'media-grid-upload-result'); closeModal('attachChatPhotos')">Сохранить</button>
+                      </div>
+                  </div>
+                </div>
+                <section class="dialog-with">
+                    
+<section class="navigation">
+  <ul class="navigation__list">
+      <a class="list__item" href="{{profile_path}}/{{user.id}}">
+          <div class="list__icon _icon-profile"></div>
+          <div class="list__text">Моя страница</div>
+      </a>
+      <a class="list__item" href="{{ news_path }}">
+          <div class="list__icon _icon-news"></div>
+          <div class="list__text">Новости</div>
+      </a>
+      <a class="list__item" href="{{ chats_path }}">
+          <div class="list__icon _icon-messages"></div>
+          <div class="list__text">Сообщения</div>
+      </a>
+      <a class="list__item" href="{{ friends_path }}">
+          <div class="list__icon _icon-friends"></div>
+          <div class="list__text">Друзья</div>
+      </a>
+      <a class="list__item">
+          <div class="list__icon _icon-music"></div>
+          <div class="list__text">Музыка</div>
+      </a>
+      <a class="list__item">
+          <div class="list__icon _icon-community"></div>
+          <div class="list__text">Сообщества</div>
+      </a>
+  </ul>
+</section>
+
+
+                    
+                    <div class="dialog-with__body card">
+                        <div class="dialog-with__header">
+                            <div class="dialog-with__title">{{ chat.title }}</div>
+                        </div>
+                        <div class="dialog-with__main">
+                            <ul class="dialog-with__list" id="chat-messages-id">
+                                {% for message in chat_messages %}
+                                <li class="dialog-with__item" id="chat-{{message.id}}">
+                                    <div class="item-content">  
+                                        <img class="dialog-with__photo" src="{{ profile_avatars_dir}}/{{ message.user.img }}" alt="">
+                                        <div class="dialog-with__message-info">
+                                            <div class="dialog-with__sender">
+                                                <a href="{{ profile_path }}/{{ message.user.id}}" class="dialog-with__from-whom">{{ message.user.fullname }}</a>
+                                                <div class="date__subtitle"><time class="date__date" time="{{message.created_date}}"></time></div>
+                                            </div>
+                                            <div class="dialog-with__text">{{ message.content }}</div>
+                                        </div>
+
+                                    </div>
+                                    <ul class="messages-take media-grid items-{{message.images|length}}">
+                                      {% for image in message.images %}
+                                        <li class="media-grid item">
+                                            <img src="{{ chat_images_dir }}/{{ image.url }}" alt="" class="media-grid__img">
+                                        </li>
+                                      {% endfor %}
+                                    </ul>
+                                </li>
+                                {% endfor %}
+                            </ul> 
+                        </div>
+                        <div class="dialog-with__footer">
+                            <div class="dialog-with__activity">
+                                <div class="dialog-with__add-photo _icon-paperclip" role="button" onclick="openModal('attachChatPhotos')"></div>
+                                <div class="dialog-with__text-field" contentEditable="true" role="textbox" aria-multiline="true" data-text="Напишите сообщение..." 
+                                onkeydown="autoResize(event, 'new-chat-message', chat_id='{{ chat.id }}')" id="new-chat-message"></div>
+                                
+                            </div> 
+                        </div>
+                        <ul class="media-grid items- messages-send" id="media-grid-upload-result">
+                      
+                        </ul>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </body>
+
+    <footer><script src="{{ static_dir }}/js/app.min.js"></script></footer>
+</html>

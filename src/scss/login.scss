@@ -1,0 +1,201 @@
+
+// Login
+
+
+.login {
+  background-color: #edeef0;
+
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &__form {
+    position: relative;
+    top: -100px;
+    text-align: center;
+    padding: 20px;
+    min-width: 500px;
+  }
+
+  &__logo {
+    font-size: $fzH + 13px;
+    margin: 5px 0 10px 0;
+  }
+
+  &__title {
+    font-size: $fzH - 5px;
+    font-family: $ff;
+    font-weight: bold;
+  }
+
+  &__subtitle {
+    margin: 10px 0 20px 0;
+    color: $iconFontColorDefault;
+    font-size: $fzT;
+  } 
+
+  &__entry {
+    margin: 40px 0 20px  0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+  
+  &__error {
+    font-size: $fzT;
+    font-weight: oblique;
+    color: $errorColor;
+  }
+}
+
+
+.form {
+  &__phone {
+    font-weight: 500;
+    font-size: 15px;
+    margin: 10px 10px;
+  }
+
+  &__password {
+    font-weight: 500;
+    font-size: 15px;
+    margin: 10px 10px;
+}
+
+
+
+  &__submit {
+    border-radius: 5px;
+    margin: 10px 0;
+    padding: 10px;
+    font-size: $fzA;
+    background-color: $iconFontColorNavigation;
+    color: $FontColorLight;
+    position: relative;
+    transition: transform 0.3s ease , background-color 0.3s, box-shadow 0.3s; // Добавляем transition для transform и изменения цвета фона
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); // Добавляем тень
+  }     
+  
+  &__submit:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); // Добавляем тень
+  }
+
+  &__submit:active {
+    background-color: lighten($iconFontColorNavigation, 10%); // Уменьшаем яркость цвета фона при нажатии
+  }
+  &__redirect-trigger {
+    margin: 5px 0 0 0;
+    background-color: #fff;
+    color: $fc;
+  }
+}
+
+
+.flat {
+  position: relative;
+  width: 100%;
+}
+
+
+
+.register {
+  
+  min-height: 100%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+  &__form {
+    position: relative;
+    top: -100px;
+    text-align: center;
+    padding: 20px;
+    min-width: 500px;
+  }
+
+  &__logo {
+    font-size: $fzH + 13px;
+    margin: 5px 0 10px 0;
+  }
+
+  &__title {
+    font-size: $fzH - 5px;
+    font-family: $ff;
+    font-weight: bold;
+  }
+
+  &__subtitle {
+    margin: 10px 0 20px 0;
+    color: $iconFontColorDefault;
+    font-size: $fzT;
+  }
+
+  &__entry {
+    margin: 40px 0 20px  0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+
+  &__error {
+    font-size: $fzT;
+    font-weight: oblique;
+    color: $errorColor;
+  }
+}
+
+.form {
+
+  &__name {
+    font-weight: 500;
+    font-size: 15px;
+    margin: 10px 10px;
+  }
+
+  &__surname {
+    font-weight: 500;
+    font-size: 15px;
+    margin: 20px 10px;
+  }
+
+  &__username {
+    font-weight: 500;
+    font-size: 15px;
+    margin: 10px 10px;
+  }
+
+  &__password {
+    font-weight: 500;
+    font-size: 15px;
+    margin: 10px 10px;
+  }
+}
+
+
+.email-verification {
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__logo {
+    font-size: $fzH + 13px;
+    margin: 5px 0 10px 0;
+  }
+
+  &__title {
+    font-size: $fzH - 5px;
+    font-family: $ff;
+    font-weight: bold;
+  }
+  
+  &__conclusion {
+    font-weight: 500;
+    font-size: 15px;
+    margin: 10px 10px;
+  }
+
+}
+

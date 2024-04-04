@@ -1,0 +1,73 @@
+.profile {
+  display: flex;
+
+  &__wall {
+    display: block;
+    width: calc(#{$container-width} - #{$navigation-width});
+  }
+  
+  &__header {
+    margin: 10px 0 20px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  &__header-content {
+    display: flex;
+    justify-content: space-between;
+    width: 100%; 
+  }
+
+  &__avatar {
+    margin: 20px;
+    border-radius: 100px;
+    cursor: pointer;
+  }
+
+  &__owner-page {
+    font-size: 18px;
+    display: flex;
+    justify-self: center;
+    gap: 5px;
+  }
+
+  &__name {
+    font-weight: 600;
+    font-family: $ff;
+  }
+
+  &__surname {
+    font-weight: 600;
+    font-family: $ff;
+  }
+
+  &__activity {
+    display: flex;
+    justify-self: center;
+    padding: 0 25px 0 0;
+    gap: 5px;
+  }
+
+  &__button-add {
+    border-radius: 5px;
+    padding: 8px;
+    color: $FontColorLight;
+    background-color: $iconFontColorNavigation;
+    font-size: 15px;
+  }
+
+  &__button-message {
+    padding: 5px 5px;
+    font-size: 18px;
+    border-radius: 5px;
+    background-color: $iconFontColorNavigationBack;
+    color: $iconFontColorNavigation;
+  }
+}
+
+
+.profile__avatar.big {
+  max-width: 125px;
+  max-height: 125px;
+}

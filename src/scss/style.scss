@@ -1,0 +1,322 @@
+@import "fonts";
+@import "remove";
+@import url('https://fonts.googleapis.com/css2?family=Hedvig+Letters+Sans&family=Poppins:wght@400;500;600;700&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+@import "CONST";
+@import "navigation";
+@import "login";
+@import "header-main";
+@import "dialogs";
+@import "MIXINS";
+@import "FUNCTIONS";
+@import "profile";
+@import 'change-photo';
+@import 'slider';
+@import 'dialog-with';
+@import 'date';
+@import 'preloader';  
+@import 'comments';
+
+
+[contentEditable=true]:empty:not(:focus):before {
+  content: attr(data-text);
+  color: $iconFontColorDefault;
+  letter-spacing: 1.1px;
+}
+
+html, body {
+  min-height: 100vh; 
+  margin: 0; 
+  padding: 0; 
+  font-family: $ff;
+  font-weight: $fw;
+}
+
+
+._icon {
+  color: $iconFontColorDefault;
+}
+
+button {
+  font-weight: 500;
+}
+
+p {
+  font-size: $fzT;
+  color: $fc;
+}
+
+span {
+  font-size: $fzT;
+  color: $fc;
+}
+
+h6 {
+  font-size: $fzT;
+}
+
+.btn {
+  background-color: #edeef0;
+  border-radius: 15px;
+}
+
+
+
+.radio-btn {
+  width: 30px;
+  height: 30px;
+  border: 1px solid $iconFontColorDefault;
+  border-radius: 50px;
+  transition: background-color 0.3s ease;
+}
+
+.radio-btn-active {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  border-radius: 50px;
+  background-color: $iconFontColorNavigation;
+  transition: background-color 0.3s ease;
+}
+
+.radio-btn-active::after {
+  content: "\e909"; 
+  font-family: 'icons'; 
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  color: #fff;
+  transform: translate(-50%, -50%); 
+}
+
+.btn-active {
+  background-color: #fae8e8;
+  border-radius: 15px;
+}
+
+.container {
+  max-width: $container-width;
+  margin: 0 auto;
+}
+
+main {
+  margin: 40px 0 0 0;
+  background-color: #edeef0;
+  padding: 20px 0 0 0;
+  min-height: 100vh;
+}
+
+.scrolling {
+  overflow-y: scroll;
+  scrollbar-width: none; // Скрываем стандартные полосы прокрутки в Firefox
+
+  &::-webkit-scrollbar {
+    display: none; // Скрываем полосы прокрутки вебкит-браузеров
+  }
+}
+
+.page {
+  margin: 15px 0 0 0;
+  display: flex;
+}
+
+
+.page-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: calc(#{$container-width} - #{$navigation-width});
+  &__add-new-note {
+    margin: 0 0 20px 0;
+  }
+  
+  &__centered-submit {
+    font-size: 15px;
+    margin: 5px 0;
+    border-radius: 5px;
+    background-color: #e7833b;;
+    color: #fff;
+    padding: 10px 15px;
+    text-align: center;
+    min-width: 80px;
+  }
+  
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+
+.list {
+
+  &__note {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+
+  }
+
+  &__profile {
+  }
+
+  &__link {
+  }
+
+  &__photo {
+    margin: 10px 10px;
+    border-radius: 50px;
+    max-width: 35px;
+  }
+
+  &__text-field {
+    margin: auto 0;
+    padding: 12px 25px 10px 5px;
+    flex-grow: 1;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 25px;
+    letter-spacing: 2;
+    font-weight: 500;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+    width: calc(100% - 150px); /* Вычитаем ширину изображения профиля из ширины родительского элемента */
+    min-height: 50px; /* Устанавливаем значение по умолчанию */
+    transition: min-height 0.3s ease; /* Анимация изменения высоты */
+  }
+}
+
+
+.add-new-note {
+  &__activity {
+    display: flex;
+    justify-content: end;
+  }
+}
+
+
+.media-selector {
+  cursor: pointer;
+  padding: 10px 25px;
+  font-size: 25px;
+}
+
+
+
+.page-body {
+
+  &__news {
+    margin: 0 0 20px 0;
+  }
+}
+
+
+.news {
+  
+  &__header {
+    display: flex;
+    &_text {
+      display: flex;
+      flex-direction: column;
+      padding: 15px 0;
+      justify-content: space-between;
+    }
+  }
+
+  &__image {
+    margin: 15px 15px 0 15px;
+    border-radius: 50px;
+    max-width: 40px;
+  }
+
+
+  &__subtitle {
+    color: #757575;
+    font-size: 13px;
+  }
+
+  &__date {
+  }
+
+}
+
+.link {
+  font-size: 13px;
+  color: $fc;
+}
+.link:hover {
+  text-decoration: underline 1px rgb(0, 0, 0);
+}
+.news-body {
+  padding: 5px 20px;
+  &__text {
+    margin: 0 0 10px 0;
+  }
+
+  &__media-grid {
+    position: relative;
+    max-width: 100%;
+  }
+}
+.media-grid {
+}
+.item {
+}
+.news-footer {
+  padding: 10px 20px;
+  display: flex;
+  column-gap: 15px;
+  font-size: 15px;
+  color: $iconFontColorDefault;
+  &__like {
+    padding: 10px;
+  }
+
+  &__comment {
+    cursor: pointer;
+    padding: 10px;
+  }
+}
+
+.count {
+  font-family: $INTFONT !important;
+  padding: 0 5px;
+  font-size: 15px;
+  color: $iconFontColorDefault;
+}
+
+.like-active {
+  color: red;
+}
+
+.news-footer__like {
+  cursor: pointer;
+}
+
+.news-footer__like span.count {
+  user-select: none;
+}
+
+/* Добавленные стили для смены курсора при наведении */
+.news-footer__like:hover {
+  cursor: pointer;
+}
+
+.vertical-centered {
+  align-items: center;
+}
+
+.separated {
+  display: block;
+  margin: 100px 0;
+}
+
+.separated::after {
+  content: ''; 
+  position: absolute; 
+  width: 200%; 
+  height: 2px; 
+  background-color: $ColorDefault; 
+}

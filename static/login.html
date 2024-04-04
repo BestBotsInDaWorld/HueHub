@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% set static_dir = '/static' %}
+    {% set profile_avatars_dir = '/static/img/profile_avatars' %}
+    {% set group_avatars_dir = '/static/img/group_avatars' %}
+    {% set post_images_dir = '/static/img/post_images' %}
+    {% set post_comment_images_dir = '/static/img/post_comment_images' %}
+    {% set dialog_images_dir = '/static/img/dialog_images' %}
+    {% set chat_images_dir = '/static/img/chat_images' %}
+    {% set profile_path = '/profile' %}
+    {% set chat_path = '/chat' %}
+    {% set friends_path = '/friends' %}
+    {% set chats_path = '/chats' %}
+    {% set news_path = '/' %}
+    <script>
+        var profileAvatarsDir = "{{ profile_avatars_dir }}";
+        var groupAvatarsDir = "{{ group_avatars_dir }}";
+        var profilePath = "{{ profile_path }}";
+        var chatPath = "{{ chat_path }}";
+        var dialogImagesDir = "{{ dialog_images_dir }}";
+        var chatImagesDir = "{{ chat_images_dir }}";
+        var postCommentImagesDir = "{{ post_comment_images_dir }}";
+    </script>
+    <link rel="stylesheet" href="{{ static_dir }}/css/style.min.css">
+    <title>Авторизация</title>
+</head>
+    <div class="login">
+        <div class="container">
+            <form method="post" class="login__form card">
+                {{ form.hidden_tag() }}
+                <div class="login__logo _icon-logotype"></div>
+                <div class="login__title">Вход HueHub</div>
+
+                <div class="login__subtitle">Введите телефон или почту, которые <br>привязаны к аккаунту</div>
+                <div class="login__entry">
+                    {{ form.email(class="form__phone", type="email", placeholder="Почта", id="login", required=True) }}
+                    {{ form.password(class="form__password", type="password", placeholder="Пароль", id="password", required=True) }}
+                </div>
+                <div class="login__error"> {{message}} </div>
+                <button type="submit" class="form__submit flat" id="submit-login">Продолжить</button>
+                <a href="/register" type="button" class="form__redirect-trigger" id="register-trigger">Зарегистрироваться</a>
+            </form>
+        </div>
+    </div>
+    <footer><script src="{{ static_dir }}/js/app.min.js"></script></footer>
+</html>

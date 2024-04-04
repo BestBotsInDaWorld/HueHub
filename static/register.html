@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% set static_dir = '/static' %}
+    {% set profile_avatars_dir = '/static/img/profile_avatars' %}
+    {% set group_avatars_dir = '/static/img/group_avatars' %}
+    {% set post_images_dir = '/static/img/post_images' %}
+    {% set post_comment_images_dir = '/static/img/post_comment_images' %}
+    {% set dialog_images_dir = '/static/img/dialog_images' %}
+    {% set chat_images_dir = '/static/img/chat_images' %}
+    {% set profile_path = '/profile' %}
+    {% set chat_path = '/chat' %}
+    {% set friends_path = '/friends' %}
+    {% set chats_path = '/chats' %}
+    {% set news_path = '/' %}
+    <script>
+        var profileAvatarsDir = "{{ profile_avatars_dir }}";
+        var groupAvatarsDir = "{{ group_avatars_dir }}";
+        var profilePath = "{{ profile_path }}";
+        var chatPath = "{{ chat_path }}";
+        var dialogImagesDir = "{{ dialog_images_dir }}";
+        var chatImagesDir = "{{ chat_images_dir }}";
+        var postCommentImagesDir = "{{ post_comment_images_dir }}";
+    </script>
+    <link rel="stylesheet" href="{{ static_dir }}/css/style.min.css">
+    <title>Регистрация</title>
+</head>
+    <div class="login">
+        <div class="container">
+            <form method="post" class="register__form card">
+                {{ form.hidden_tag() }}
+                <div class="register__logo _icon-logotype"></div>
+                <div class="register__title">Регистрация HueHub</div>
+                <div class="register__subtitle">Введите данные для регистрации</div>
+                <div class="register__entry">
+                    {{ form.name(class="form__name", type="text", placeholder="Имя", required=True) }}
+                    {{ form.surname(class="form__surname", type="text", placeholder="Фамилия", required=True) }}
+                    {{ form.email(class="form__username", text="email", placeholder="Адрес электронной почты", required=True) }}
+                    {{ form.password(class="form__password", type="password", placeholder="Пароль", id="password", required=True) }}
+                    {{ form.password_again(class="form__password", type="password", placeholder="Повторите пароль", required=True) }}
+                </div>
+                <div class="register__error"> {{message}} </div>
+                <button class="form__submit flat" id="submit-register">Зарегистрироваться</button>
+                <a href="/login" type="button" class="form__redirect-trigger" id="login -trigger">Обратно к логину</a>
+            </form>
+        </div>
+    </div>
+    <footer><script src="{{ static_dir }}/js/app.min.js"></script></footer>
+</html>

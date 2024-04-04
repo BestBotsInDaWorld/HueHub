@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    @@include('html/head.html', {
+        "title": "Регистрация"
+    })
+    <div class="login">
+        <div class="container">
+            <form method="post" class="register__form card">
+                {{ form.hidden_tag() }}
+                <div class="register__logo _icon-logotype"></div>
+                <div class="register__title">Регистрация HueHub</div>
+                <div class="register__subtitle">Введите данные для регистрации</div>
+                <div class="register__entry">
+                    {{ form.name(class="form__name", type="text", placeholder="Имя", required=True) }}
+                    {{ form.surname(class="form__surname", type="text", placeholder="Фамилия", required=True) }}
+                    {{ form.email(class="form__username", text="email", placeholder="Адрес электронной почты", required=True) }}
+                    {{ form.password(class="form__password", type="password", placeholder="Пароль", id="password", required=True) }}
+                    {{ form.password_again(class="form__password", type="password", placeholder="Повторите пароль", required=True) }}
+                </div>
+                <div class="register__error"> {{message}} </div>
+                <button class="form__submit flat" id="submit-register">Зарегистрироваться</button>
+                <a href="/login" type="button" class="form__redirect-trigger" id="login -trigger">Обратно к логину</a>
+            </form>
+        </div>
+    </div>
+    @@include('html/footer.html', {})
+</html>

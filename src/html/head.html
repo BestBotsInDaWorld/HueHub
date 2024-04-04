@@ -1,0 +1,27 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% set static_dir = '/static' %}
+    {% set profile_avatars_dir = '/static/img/profile_avatars' %}
+    {% set group_avatars_dir = '/static/img/group_avatars' %}
+    {% set post_images_dir = '/static/img/post_images' %}
+    {% set post_comment_images_dir = '/static/img/post_comment_images' %}
+    {% set dialog_images_dir = '/static/img/dialog_images' %}
+    {% set chat_images_dir = '/static/img/chat_images' %}
+    {% set profile_path = '/profile' %}
+    {% set chat_path = '/chat' %}
+    {% set friends_path = '/friends' %}
+    {% set chats_path = '/chats' %}
+    {% set news_path = '/' %}
+    <script>
+        var profileAvatarsDir = "{{ profile_avatars_dir }}";
+        var groupAvatarsDir = "{{ group_avatars_dir }}";
+        var profilePath = "{{ profile_path }}";
+        var chatPath = "{{ chat_path }}";
+        var dialogImagesDir = "{{ dialog_images_dir }}";
+        var chatImagesDir = "{{ chat_images_dir }}";
+        var postCommentImagesDir = "{{ post_comment_images_dir }}";
+    </script>
+    <link rel="stylesheet" href="{{ static_dir }}/css/style.min.css">
+    <title>@@title</title>
+</head>

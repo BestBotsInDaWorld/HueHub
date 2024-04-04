@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% set static_dir = '/static' %}
+    {% set profile_avatars_dir = '/static/img/profile_avatars' %}
+    {% set group_avatars_dir = '/static/img/group_avatars' %}
+    {% set post_images_dir = '/static/img/post_images' %}
+    {% set post_comment_images_dir = '/static/img/post_comment_images' %}
+    {% set dialog_images_dir = '/static/img/dialog_images' %}
+    {% set chat_images_dir = '/static/img/chat_images' %}
+    {% set profile_path = '/profile' %}
+    {% set chat_path = '/chat' %}
+    {% set friends_path = '/friends' %}
+    {% set chats_path = '/chats' %}
+    {% set news_path = '/' %}
+    <script>
+        var profileAvatarsDir = "{{ profile_avatars_dir }}";
+        var groupAvatarsDir = "{{ group_avatars_dir }}";
+        var profilePath = "{{ profile_path }}";
+        var chatPath = "{{ chat_path }}";
+        var dialogImagesDir = "{{ dialog_images_dir }}";
+        var chatImagesDir = "{{ chat_images_dir }}";
+        var postCommentImagesDir = "{{ post_comment_images_dir }}";
+    </script>
+    <link rel="stylesheet" href="{{ static_dir }}/css/style.min.css">
+    <title>Про нас</title>
+</head>
+    <body>
+        <header class="header">
+  <div class="container">
+    <nav class="header__nav">
+      <ul class="nav__activity">
+        <li class="nav__brand">
+          <a href="" class="nav__logo _icon-logotype">HueHub</a>
+        </li>
+        <li class="nav__search _icon-search">
+          <input type="text" class="nav__search" placeholder="Поиск" id="search-all" value="" oninput="targetSearch()">
+          <div class="nav__search-results" style="display: none;">
+            <div class="search-results__title"><strong>Результаты поиска</strong></div>
+            <ul class="search-results__list" id="search-results-id">
+              <!-- Прелоадер -->
+              <div class="loader">
+                <div class="inner one"></div>
+                <div class="inner two"></div>
+                <div class="inner three"></div>
+              </div>
+              <!-- здесь добавляются результаты поиска-->
+            </ul>
+          </div>
+        </li>
+        <li class="nav__notification">
+          <button class="nav__notify _icon-notification"></button>
+        </li>
+     
+      </ul>
+      <div class="nav__profile">
+        <a href="#!" class="nav__profile"><img src="{{profile_avatars_dir}}/{{ user.img }}" alt="" class="nav__photo"></a>
+      </div>
+    </nav>
+  </div>
+</header>
+        <main></main>
+        <footer><script src="{{ static_dir }}/js/app.min.js"></script></footer>
+    </body>
+</html>

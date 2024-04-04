@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+    @@include('html/head.html', {
+        "title": "Авторизация"
+    })
+    <div class="login">
+        <div class="container">
+            <form method="post" class="login__form card">
+                {{ form.hidden_tag() }}
+                <div class="login__logo _icon-logotype"></div>
+                <div class="login__title">Вход HueHub</div>
+
+                <div class="login__subtitle">Введите телефон или почту, которые <br>привязаны к аккаунту</div>
+                <div class="login__entry">
+                    {{ form.email(class="form__phone", type="email", placeholder="Почта", id="login", required=True) }}
+                    {{ form.password(class="form__password", type="password", placeholder="Пароль", id="password", required=True) }}
+                </div>
+                <div class="login__error"> {{message}} </div>
+                <button type="submit" class="form__submit flat" id="submit-login">Продолжить</button>
+                <a href="/register" type="button" class="form__redirect-trigger" id="register-trigger">Зарегистрироваться</a>
+            </form>
+        </div>
+    </div>
+    @@include('html/footer.html', {})
+</html>

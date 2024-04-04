@@ -1,0 +1,227 @@
+@mixin applyUnreadStyle {
+  .dialog__preview.unread {
+    background-color: #e2e2e2;
+  }
+}
+
+.im-dialogs {
+  display: flex;
+  
+}
+
+.friends-header {
+  font-size: 24px;
+  font-weight: bold;
+  color: $fc;
+  border-bottom: 1px solid #d3d3d3; 
+  padding: 0 0 5px 30px;
+  margin: 10px 0 10px 0; 
+  font-family: $ff;
+}
+
+.dialogs {
+  margin: 15px 0 0 0;
+  display: flex;
+
+    &__search input {
+      min-width: 90%;
+    }
+
+		&__list {
+      max-height: 120vh;
+      margin: 15px 0 0 0;
+    }
+
+    
+    &__items {
+      margin: 40px 0 20px  0;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      text-align: center;
+    }
+}
+
+.fa {
+  padding: 0 20px 0 0;
+}
+
+
+.dialogs__new-dialog {
+  padding: 25px;
+  font-size: 22px;
+  color: $iconFontColorDefault;
+  display: flex;
+  justify-content: space-between;
+  animation: fadeIn 0.5s ease; /* Анимация для плавного появления блока */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+
+.chat {
+  &__submit {
+    width: 50%;
+    border-radius: 5px;
+    margin: 20px 25%; 
+    padding: 10px;
+    font-size: $fzA;
+    background-color: $iconFontColorNavigation;
+    color: $FontColorLight;
+    position: relative;
+    transition: transform 0.3s ease , background-color 0.3s, box-shadow 0.3s; // Добавляем transition для transform и изменения цвета фона
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); // Добавляем тень
+  }
+
+  &__title {
+    font-weight: 500;
+    font-size: 15px;
+    margin: 10px 10px;
+  }
+  
+  &__description {
+    font-weight: 500;
+    font-size: 15px;
+    margin: 10px 10px;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+
+.search {
+  
+  &__block {
+    display: flex;
+    padding: 18px 0 10px 15px;
+    font-size: 22px;
+    color: $iconFontColorDefault;
+  }
+
+  &__field {
+    padding: 0 0 0 10px ;
+    font-size: 14px;
+    font-family: $ff;
+  }
+
+  &__new-chat {
+    justify-self: end;
+    font-size: 26px;
+    font-family: $ff;
+    cursor: pointer;
+  }
+}
+
+
+.dialog {
+  width: calc(#{$container-width} - #{$navigation-width});
+  margin: 0 0 0 10px;
+  &__block {
+    padding: 15px;
+    display: flex;
+    gap: 8px;
+    color: inherit;
+  }
+
+  &__preview {
+    font-size: 13px;
+  }
+
+  &__preview.unread {
+    background-color: #ececec;
+    border-radius: 5px;
+    padding: 5px;
+  }
+
+  &__preview.unread:hover {
+    background-color: #e2e2e2;
+  }
+  
+  &__item {
+    cursor: pointer;
+    position: relative;
+
+  }
+
+  &__item:hover {
+    background-color: #f0efef;
+    @include applyUnreadStyle;
+  }
+
+  &__photo img{
+    border-radius: 50px;
+    width: 50px;
+  }
+
+  &__content {
+    margin: 0 5px;
+    display: flex;
+    flex-grow: 1; // Занимаем все доступное пространство
+    flex-direction: column;
+    justify-content: space-around; 
+  }
+
+  &__title {
+    color: inherit;
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+    font-size: $fzT + 2px;
+  }
+
+  &__title.text {
+    justify-self: start;
+  }
+
+  &__title.date {
+    justify-self: end;
+    color: #626d7a;
+    font-size: 13px;
+  }
+}
+
+.dialog.card {
+  min-height: 100vh;
+}
+
+.border-radius {
+  border: solid $ColorDefault;
+  border-radius: 1rem ;
+}
+
+.dialog__item::after {
+  content: ''; 
+  position: absolute; 
+  right: 20px;
+  bottom: 0px;
+  width: 89.2%; 
+  height: 2px; 
+  background-color: $ColorDefault; 
+  transition: all 0.6s ease-in-out;
+}
+
+.dialog__item:hover::after {
+  background-color: $ColorDefaultActive;
+  width: 100%; 
+  right: 0;
+}
+
+.dialogs__items {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
